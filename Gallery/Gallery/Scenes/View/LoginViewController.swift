@@ -74,8 +74,8 @@ class LoginViewController: UIViewController {
     func showHome() {
         GalleryUser.sharedUser.isLoggedIn = true
         initializeUI()
-        let VC = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-        self.navigationController?.pushViewController(VC, animated: true)
+//        let VC = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+//        self.navigationController?.pushViewController(VC, animated: true)
     }
     func showLoading() {
         activityInd!.center = self.view.center
