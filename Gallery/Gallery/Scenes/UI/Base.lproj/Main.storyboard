@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t78-GG-tM9">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Gallery Splash View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="GallerySplashViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nZr-Ad-CqQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928.98550724637687" y="70.982142857142847"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="hHJ-Vf-BcH">
+            <objects>
+                <viewController storyboardIdentifier="RegisterViewController" id="iQ3-dj-dQy" customClass="RegisterViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TVr-Tn-Pzw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hdh-SR-aJb">
+                                <rect key="frame" x="41.5" y="157" width="331" height="582"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etD-QO-EGr" customClass="TKFormTextField" customModule="TKFormTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="104.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                        <connections>
+                                            <action selector="userNameEndEditing:" destination="iQ3-dj-dQy" eventType="editingDidEnd" id="Ncg-D2-TGk"/>
+                                            <outlet property="delegate" destination="iQ3-dj-dQy" id="DMa-KI-Zpa"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-ot-9B1" customClass="TKFormTextField" customModule="TKFormTextField">
+                                        <rect key="frame" x="0.0" y="119.5" width="331" height="104.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="passwordEndEditing:" destination="iQ3-dj-dQy" eventType="editingDidEnd" id="m1c-vG-eHs"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAQ-AZ-Z0X" userLabel="Confirm Pass" customClass="TKFormTextField" customModule="TKFormTextField">
+                                        <rect key="frame" x="0.0" y="239" width="331" height="104"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="confirmPassEndEditing:" destination="iQ3-dj-dQy" eventType="editingDidEnd" id="TEV-BG-FgQ"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbj-Gs-dJL">
+                                        <rect key="frame" x="0.0" y="358" width="331" height="104.5"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKW-Cy-aYa">
+                                        <rect key="frame" x="0.0" y="477.5" width="331" height="104.5"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="SAVE"/>
+                                        <connections>
+                                            <action selector="saveRegisterationInfo:" destination="iQ3-dj-dQy" eventType="touchUpInside" id="h16-sd-Hyp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="r22-XD-syA"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hdh-SR-aJb" firstAttribute="width" secondItem="TVr-Tn-Pzw" secondAttribute="width" multiplier="0.8" id="1Gs-ij-9Ov"/>
+                            <constraint firstItem="hdh-SR-aJb" firstAttribute="centerY" secondItem="TVr-Tn-Pzw" secondAttribute="centerY" id="aSd-su-aFf"/>
+                            <constraint firstItem="hdh-SR-aJb" firstAttribute="centerX" secondItem="TVr-Tn-Pzw" secondAttribute="centerX" id="wUw-nK-3kx"/>
+                            <constraint firstItem="hdh-SR-aJb" firstAttribute="height" secondItem="TVr-Tn-Pzw" secondAttribute="height" multiplier="0.65" id="yJC-dW-A3w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gVV-cy-ELp"/>
+                    <connections>
+                        <outlet property="confirmPassTxtField" destination="qAQ-AZ-Z0X" id="f7J-mz-M5W"/>
+                        <outlet property="passwordTxtField" destination="5dh-ot-9B1" id="mX9-M3-FpQ"/>
+                        <outlet property="phoneNumberTxtField" destination="etD-QO-EGr" id="dbl-2L-pw1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="okM-3B-xG6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2657" y="62"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="sHN-LG-jnE">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="JqT-vH-LpK" customClass="LoginViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VIE-4X-71Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SpP-hQ-qUE">
+                                <rect key="frame" x="41.5" y="179" width="331" height="538"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d1I-nf-aOl" customClass="TKFormTextField" customModule="TKFormTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="95.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="userNameEndEditing:" destination="JqT-vH-LpK" eventType="editingDidEnd" id="TMi-X0-TAH"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ei-kd-t3n" customClass="TKFormTextField" customModule="TKFormTextField">
+                                        <rect key="frame" x="0.0" y="110.5" width="331" height="95.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="passwordEndEditing:" destination="JqT-vH-LpK" eventType="editingDidEnd" id="i7d-6A-Qil"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbS-U9-HDy">
+                                        <rect key="frame" x="0.0" y="221" width="331" height="96"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUK-Qx-ALa">
+                                        <rect key="frame" x="0.0" y="332" width="331" height="95.5"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="LOGIN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginTap:" destination="JqT-vH-LpK" eventType="touchUpInside" id="kri-he-fFw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wda-Qy-hxO">
+                                        <rect key="frame" x="0.0" y="442.5" width="331" height="95.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="REGISTER">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="register:" destination="JqT-vH-LpK" eventType="touchUpInside" id="9Qz-Or-TB8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lKr-7g-VOk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SpP-hQ-qUE" firstAttribute="centerX" secondItem="VIE-4X-71Q" secondAttribute="centerX" id="4Gd-KR-eNO"/>
+                            <constraint firstItem="SpP-hQ-qUE" firstAttribute="centerY" secondItem="VIE-4X-71Q" secondAttribute="centerY" id="A5e-vd-vcz"/>
+                            <constraint firstItem="SpP-hQ-qUE" firstAttribute="width" secondItem="VIE-4X-71Q" secondAttribute="width" multiplier="0.8" id="cTn-7q-LTC"/>
+                            <constraint firstItem="SpP-hQ-qUE" firstAttribute="height" secondItem="VIE-4X-71Q" secondAttribute="height" multiplier="0.6" id="cbs-lA-n3e"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordTxtField" destination="5Ei-kd-t3n" id="7An-b4-2bK"/>
+                        <outlet property="userNameTxtField" destination="d1I-nf-aOl" id="yNQ-aj-3yC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fml-cx-gEe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1778.2608695652175" y="61.607142857142854"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Fme-KB-oTE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t78-GG-tM9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c5X-nM-lV9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="J68-r0-psp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rhy-Ca-YU1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="70.982142857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
