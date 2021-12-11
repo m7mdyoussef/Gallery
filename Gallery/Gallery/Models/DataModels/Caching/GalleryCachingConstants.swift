@@ -15,5 +15,14 @@ class GalleryCachingConstants {
     static let password = "password"
     static let isLoggedIn = "isLoggedIn"
     static let userData = "UserData"
+    static let photoData = "PhotoData"
+//
+    static let download_url = "download_url"
+    static let id = "id"
+    static let author = "author"
+    static let width = "width"
+    static let height = "height"
+    static let url = "url"
+
 
 }

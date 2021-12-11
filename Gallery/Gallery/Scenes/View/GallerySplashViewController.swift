@@ -14,8 +14,8 @@ class GallerySplashViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             if GalleryUser.sharedUser.isLoggedIn {
                 print("is logged in")
-//                let VC = self.storyboard?.instantiateViewController(identifier: "c") as! HomeViewController
-//                self.navigationController?.pushViewController(VC, animated: true)
+                let VC = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+                self.navigationController?.pushViewController(VC, animated: true)
             }else{
                 print("is logged out")
                 let VC = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController

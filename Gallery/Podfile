@@ -8,7 +8,7 @@ target 'Gallery' do
   # Pods for Gallery
 
   pod 'TPKeyboardAvoiding'
-  pod 'Alamofire', '4.9.1'
+  pod 'Alamofire', '~> 5.2'
   pod 'ObjectMapper'
   pod 'SDWebImage'
   pod 'ReachabilitySwift'
