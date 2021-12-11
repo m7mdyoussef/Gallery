@@ -92,22 +92,18 @@ class RegisterViewController: UIViewController {
     @IBAction func passwordEndEditing(_ sender: Any) {
         if(passwordTxtField.text == ""){
             passwordTxtField.error = "Required input"
-        }
-        else if(!GalleryValidationUtil.isValid(password: passwordTxtField.text!)){
-            passwordTxtField.error = "inavlid user name"
-        }
-        else{
+        }else if(!GalleryValidationUtil.isValid(password: passwordTxtField.text!)){
+            passwordTxtField.error = "password must be more than 8 characters"
+        }else{
             passwordTxtField.error = nil
         }
     }
     @IBAction func confirmPassEndEditing(_ sender: Any) {
         if(confirmPassTxtField.text == ""){
             confirmPassTxtField.error = "Required input"
-        }
-        else if(passwordTxtField.text! != confirmPassTxtField.text!){
+        }else if(passwordTxtField.text! != confirmPassTxtField.text!){
             confirmPassTxtField.error = "Confirm Password doesn't match the password."
-        }
-        else{
+        }else{
             confirmPassTxtField.error = nil
         }
     }

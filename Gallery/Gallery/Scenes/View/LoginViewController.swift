@@ -74,8 +74,8 @@ class LoginViewController: UIViewController {
     func showHome() {
         GalleryUser.sharedUser.isLoggedIn = true
         initializeUI()
-//        let VC = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-//        self.navigationController?.pushViewController(VC, animated: true)
+        let VC = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     func showLoading() {
         activityInd!.center = self.view.center
@@ -107,11 +107,9 @@ class LoginViewController: UIViewController {
         
         if(userNameTxtField.text == ""){
             userNameTxtField.error = "Required input"
-        }
-        else if(!GalleryValidationUtil.isValid(userName: userNameTxtField.text!)){
+        }else if(!GalleryValidationUtil.isValid(userName: userNameTxtField.text!)){
             userNameTxtField.error = "inavlid user name"
-        }
-        else{
+        }else{
             userNameTxtField.error = nil
         }
     }
@@ -119,8 +117,9 @@ class LoginViewController: UIViewController {
     @IBAction func passwordEndEditing(_ sender: Any) {
         if(passwordTxtField.text == ""){
             passwordTxtField.error = "Required input"
-        }
-        else{
+        }else if(!GalleryValidationUtil.isValid(password: passwordTxtField.text!)){
+            passwordTxtField.error = "password must be more than 8 characters"
+        }else{
             passwordTxtField.error = nil
         }
     }

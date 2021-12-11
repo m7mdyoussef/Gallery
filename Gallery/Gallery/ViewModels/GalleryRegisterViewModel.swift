@@ -28,18 +28,18 @@ class GalleryRegisterViewModel:GalleryRegisterViewModelProtocol{
         doneObservable = doneSubject.asObservable()
         
     }
-    private func saveUseData(data:UserDataModel){
+    private func saveUserData(data:UserDataModel){
         loadingsubject.onNext(true)
         UserPersistenceManager.shared.saveUserData(user: data) {[weak self] saveStatus in
             if saveStatus {
                 // nav to lgin by userNmae
-                print("joe, saved ")
+                print("joeR, saved \(data)")
                 self?.loadingsubject.onNext(false)
                 self?.doneSubject.onCompleted()
 
             }else{
                // show error
-                print("joe, Error while saving data")
+                print("joeR, Error while saving data")
                 self?.loadingsubject.onNext(false)
                 self?.errorSubject.onNext("Error while saving data")
 
@@ -62,9 +62,24 @@ class GalleryRegisterViewModel:GalleryRegisterViewModelProtocol{
             errorSubject.onNext("Confirmed Password doesn't match the password you entered!!")
             return
         }
-        saveUseData(data: UserDataModel(mobileNumber: userName, password: password))
+        checkUserExistance(userName: userName, password: password)
     }
     
 
+    private func checkUserExistance(userName: String, password: String){
+        UserPersistenceManager.shared.getUserData(userName: userName) {[weak self] usersData in
+            if let usersData = usersData {
+                print("joeR data:\(usersData)")
+                for userData in usersData{
+                    if userData.mobileNumber == userName {
+                        print("joeR data true")
+                        self?.errorSubject.onNext("This User already exist, please Login !!")
+                        return
+                    }
+                }
+            }
+            self?.saveUserData(data: UserDataModel(mobileNumber: userName, password: password))
+        }
+    }
 
 }
