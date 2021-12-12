@@ -23,11 +23,11 @@ struct NetworkService {
     func fetchData(url: URL, completion: @escaping (Result<Data, DataResponseError>) -> Void) {
         AF.request(url).responseData { (data) in
             guard let httpResponse = data.response,
-                httpResponse.statusCode == 200,
-                let data = data.data
-                else {
-                    completion(Result.failure(DataResponseError.network))
-                    return
+                  httpResponse.statusCode == 200,
+                  let data = data.data
+            else {
+                completion(Result.failure(DataResponseError.network))
+                return
             }
             
             completion(.success(data))
@@ -35,6 +35,10 @@ struct NetworkService {
     }
     
     func cancelAllRequests(){
-        AF.cancelAllRequests()
+        Alamofire.Session.default.session.getTasksWithCompletionHandler { (sessionDataTask, uploadData, downloadData) in
+            sessionDataTask.forEach { $0.cancel() }
+            uploadData.forEach { $0.cancel() }
+            downloadData.forEach { $0.cancel() }
+        }
     }
 }

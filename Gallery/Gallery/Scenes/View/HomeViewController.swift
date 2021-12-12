@@ -6,10 +6,11 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    private let viewModel = HomeViewModel()
-    private let disposeBag = DisposeBag()
+    private var viewModel: HomeViewModel!
+    private var disposeBag: DisposeBag!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    private var activityInd:UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     private lazy var viewSpinner: UIView = {
         let view = UIView(frame: CGRect(
@@ -32,38 +33,49 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        layout()
+        rgisterCell()
+        viewModel = HomeViewModel()
+        disposeBag = DisposeBag()
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         bind()
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            self.viewModel.fetchMoreDatas.onNext(())
-        }
-        refreshControl.addTarget(self, action: #selector(refreshControlTriggered), for: .valueChanged)
+        layout()
+    }
+    
+    func rgisterCell(){
+        let photoNibCell = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
+        collectionView.register(photoNibCell, forCellWithReuseIdentifier: "HomeCollectionViewCell")
     }
     
     private func layout() {
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshControlTriggered), for: .valueChanged)
         self.navigationItem.hidesBackButton = true
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style:.plain, target: self, action: #selector(handleLogOut))
-        collectionView.backgroundColor = .clear
-        
-        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
-        let photoNibCell = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
-        collectionView.register(photoNibCell, forCellWithReuseIdentifier: "HomeCollectionViewCell")
-        collectionView.refreshControl = refreshControl
-        
-        
-        // collectionView.tableFooterView = UIView(frame: .zero)
+    }
+    @objc private func refreshControlTriggered() {
+        viewModel.refreshControlAction.onNext(())
     }
     
     private func bind() {
-        
-        collectionViewBind()
+        viewModel.loadingObservable.subscribe(onNext: {[weak self] (status) in
+            guard let self = self else{return}
+            switch status{
+            case true:
+                self.showLoading()
+            case false:
+                self.hideLoading()
+            }
+        }).disposed(by: disposeBag)
         
         viewModel.isLoadingSpinnerAvaliable.subscribe { [weak self] isAvaliable in
-            //   guard let isAvaliable = isAvaliable.element,
-            //   let self = self else { return }
-            // self.collectionView.tableFooterView = isAvaliable ? self.viewSpinner : UIView(frame: .zero)
+            guard let isAvaliable = isAvaliable.element,
+                  let self = self else { return }
+            if(isAvaliable){
+                self.showLoading()
+            }else{
+                self.hideLoading()
+            }
         }
         .disposed(by: disposeBag)
         
@@ -73,17 +85,15 @@ final class HomeViewController: UIViewController {
         }
         .disposed(by: disposeBag)
         
-        viewModel.showErrorObservable.subscribe(onNext: { msg in
+        viewModel.showErrorObservable.subscribe(onNext: { [weak self] (msg) in
+            guard let self = self else{return}
             self.showAlert(message: msg)
-            }).disposed(by: disposeBag)
-    }
-    
-    private func collectionViewBind() {
+        }).disposed(by: disposeBag)
         
-        viewModel.items.bind(to: collectionView.rx.items(cellIdentifier: "HomeCollectionViewCell")){ row, item, cell in
-            let cell = cell as! HomeCollectionViewCell
-            cell.cellConfig(photo: item)
-            
+        viewModel.items.bind(to: collectionView.rx.items) { collectionView, row, item in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: IndexPath(index: row)) as! HomeCollectionViewCell
+            cell.photoItem = item
+            return cell
         }.disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(PhotoModel.self).subscribe{(value) in
@@ -95,15 +105,6 @@ final class HomeViewController: UIViewController {
                 PhotoDetailsViewController.photoModel = value.element
                 self.present(PhotoDetailsViewController, animated: true, completion: nil)
             }
-//            if AppCommon.shared.checkConnectivity() == true{
-//                // self.controlViews(flag: true)
-//                self.collectionViewModel.getProductElement(idProduct: String(value.element?.id ?? 0))
-//                let detailsViewController = self.storyboard?.instantiateViewController(identifier: "ProductDetailsViewController") as! ProductDetailsViewController
-//                detailsViewController.modalPresentationStyle = .fullScreen
-//                detailsViewController.idProduct = String(value.element?.id ?? 0)
-//                self.present(detailsViewController, animated: true, completion: nil)
-//            }
-            
         }.disposed(by: disposeBag)
         
         collectionView.rx.didScroll.subscribe { [weak self] _ in
@@ -111,17 +112,13 @@ final class HomeViewController: UIViewController {
             let offSetY = self.collectionView.contentOffset.y
             let contentHeight = self.collectionView.contentSize.height
             
-            if offSetY > (contentHeight - self.collectionView.frame.size.height - 100) {
+            if offSetY > (contentHeight - self.collectionView.frame.size.height - 20) {
                 self.viewModel.fetchMoreDatas.onNext(())
             }
         }.disposed(by: disposeBag)
+        
     }
     
-    @objc private func refreshControlTriggered() {
-        print("spin")
-        viewModel.refreshControlAction.onNext(())
-    }
-
     @objc func handleLogOut() {
         let alertController = UIAlertController(title: nil, message: "Are you sure that you want to logout?", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
@@ -132,6 +129,17 @@ final class HomeViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
+    
+    func showLoading() {
+        activityInd.center = self.view.center
+        self.view.addSubview(activityInd)
+        activityInd.startAnimating()
+    }
+    
+    func hideLoading() {
+        activityInd.stopAnimating()
+    }
+    
 }
 
 //MARK: - collectionViewDelegate

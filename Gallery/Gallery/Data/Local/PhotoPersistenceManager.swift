@@ -12,28 +12,28 @@ class PhotoPersistenceManager{
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     //TODO:: refactor
-    func savePhotoData(photo:PhotoModel, completion: @escaping (Bool) -> Void){
+    func savePhotoData(photos:[PhotoModel], completion: @escaping (Result<Bool,NSError>) -> Void){
         let entity = NSEntityDescription.entity(forEntityName: GalleryCachingConstants.photoData, in: context)
-        let photoObj = NSManagedObject(entity: entity!, insertInto: context)
-        
-        photoObj.setValue(photo.author, forKey: GalleryCachingConstants.author)
-        photoObj.setValue(photo.id, forKey: GalleryCachingConstants.id)
-        photoObj.setValue(photo.download_url, forKey: GalleryCachingConstants.download_url)
-        photoObj.setValue(photo.url, forKey: GalleryCachingConstants.url)
-        photoObj.setValue(photo.width, forKey: GalleryCachingConstants.width)
-        photoObj.setValue(photo.height, forKey: GalleryCachingConstants.height)
-        
+        for photo in photos {
+            let photoObj = NSManagedObject(entity: entity!, insertInto: context)
+            photoObj.setValue(photo.author, forKey: GalleryCachingConstants.author)
+            photoObj.setValue(photo.id, forKey: GalleryCachingConstants.id)
+            photoObj.setValue(photo.download_url, forKey: GalleryCachingConstants.download_url)
+            photoObj.setValue(photo.url, forKey: GalleryCachingConstants.url)
+            photoObj.setValue(photo.width, forKey: GalleryCachingConstants.width)
+            photoObj.setValue(photo.height, forKey: GalleryCachingConstants.height)
+        }
         do{
             try context.save()
+            completion(.success(true))
             print("stored Successfully")
-        } catch {
+        } catch let error as NSError{
             print("stored failed")
-            completion(false)
+            completion(.failure(error))
+            return
         }
-        completion(true)
     }
     
-    //TODO:: refactor
     func getPhotos() -> [PhotoModel]?{
         var photosData = [PhotoModel]()
         
@@ -61,4 +61,18 @@ class PhotoPersistenceManager{
         }
     }
     
+    func deleteAllPhotos() {
+        print("joe, DB deleted")
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: GalleryCachingConstants.photoData)
+        fetchReq.returnsObjectsAsFaults = false
+        do {
+            let photos = try context.fetch(fetchReq)
+            for photo in photos {
+                guard let photoData = photo as? NSManagedObject else {continue}
+                context.delete(photoData)
+            }
+        } catch let error {
+            print("joe, DB error \(error)")
+        }
+    }
 }

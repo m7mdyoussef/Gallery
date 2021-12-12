@@ -1,25 +1,18 @@
 
 import Foundation
 
-struct NetworkManager {
+class NetworkManager {
+    
+    static let sharedInstance = NetworkManager()
+    
+    private init() {}
     
     private let networkService = NetworkService()
-    
-    func downloadImage(url: String, completion: @escaping (Result<Data, DataResponseError>) -> Void) {
-        if let url = URL(string: url) {
-            networkService.fetchData(url: url) { (result) in
-                completion(result)
-            }
-        } else {
-            completion(.failure(DataResponseError.wrongURL))
-        }
-    }
-    
-    
-    func fetchData(url: String, page: Int, completion: @escaping (Result<[PhotoModel], DataResponseError>) -> Void) {
         
-        let queryItems = [URLQueryItem(name: "page", value: String(page)), URLQueryItem(name: "limit", value: "10")]
-        var urlComps = URLComponents(string: url)
+    func fetchData(page: Int, limit: Int, completion: @escaping (Result<[PhotoModel]?, DataResponseError>) -> Void) {
+        
+        let queryItems = [URLQueryItem(name: "page", value: String(page)), URLQueryItem(name: "limit", value: String(limit))]
+        var urlComps = URLComponents(string: Constant.baseURL)
         urlComps?.queryItems = queryItems
         if let url = urlComps?.url{
             networkService.fetchData(url: url) { (result) in

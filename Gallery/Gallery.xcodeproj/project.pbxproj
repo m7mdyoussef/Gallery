@@ -18,9 +18,10 @@
 		F19D26A82764C7F800499980 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26A72764C7F800499980 /* HomeViewModel.swift */; };
 		F19D26AC2764D5F200499980 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26AA2764D5F200499980 /* HomeCollectionViewCell.swift */; };
 		F19D26AD2764D5F200499980 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F19D26AB2764D5F200499980 /* HomeCollectionViewCell.xib */; };
-		F19D26AF2764D65700499980 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26AE2764D65700499980 /* CellViewModel.swift */; };
 		F19D26B12765056000499980 /* PhotoPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26B02765055F00499980 /* PhotoPersistenceManager.swift */; };
 		F19D26B727652BF700499980 /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26B627652BF700499980 /* PhotoDetailsViewController.swift */; };
+		F19D26B92765DB1100499980 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26B82765DB1100499980 /* Constant.swift */; };
+		F19D26BC2765FD9900499980 /* DataRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26BB2765FD9900499980 /* DataRepo.swift */; };
 		F1A4EEF8276337A3001DA125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A4EEF7276337A3001DA125 /* AppDelegate.swift */; };
 		F1A4EEFA276337A3001DA125 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A4EEF9276337A3001DA125 /* SceneDelegate.swift */; };
 		F1A4EEFC276337A3001DA125 /* GallerySplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A4EEFB276337A3001DA125 /* GallerySplashViewController.swift */; };
@@ -52,9 +53,10 @@
 		F19D26A72764C7F800499980 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F19D26AA2764D5F200499980 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F19D26AB2764D5F200499980 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
-		F19D26AE2764D65700499980 /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		F19D26B02765055F00499980 /* PhotoPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPersistenceManager.swift; sourceTree = "<group>"; };
 		F19D26B627652BF700499980 /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
+		F19D26B82765DB1100499980 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F19D26BB2765FD9900499980 /* DataRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepo.swift; sourceTree = "<group>"; };
 		F1A4EEF4276337A3001DA125 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A4EEF7276337A3001DA125 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1A4EEF9276337A3001DA125 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 				F19D26AB2764D5F200499980 /* HomeCollectionViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F19D26BA2765FD6F00499980 /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				F19D26BB2765FD9900499980 /* DataRepo.swift */,
+			);
+			path = Repo;
 			sourceTree = "<group>";
 		};
 		F1A4EEEB276337A3001DA125 = {
@@ -168,6 +178,7 @@
 				F1A4EF1D27635715001DA125 /* GalleryValidationUtil.swift */,
 				F1A4EF3027639EAC001DA125 /* UiViewExtension.swift */,
 				F19D269E2764ABC500499980 /* UIImageViewEx.swift */,
+				F19D26B82765DB1100499980 /* Constant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -193,7 +204,6 @@
 		F1A4EF1727634023001DA125 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F19D26AE2764D65700499980 /* CellViewModel.swift */,
 				F1A4EF2327636D81001DA125 /* GalleryRegisterViewModel.swift */,
 				F19D26982763B8CD00499980 /* GalleryLoginViewModel.swift */,
 				F19D26A72764C7F800499980 /* HomeViewModel.swift */,
@@ -212,6 +222,7 @@
 		F1A4EF192763407E001DA125 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				F19D26BA2765FD6F00499980 /* Repo */,
 				F1A4EF1B276340A0001DA125 /* Response Model  */,
 				F1A4EF1A2763408D001DA125 /* Networking */,
 			);
@@ -419,7 +430,6 @@
 			files = (
 				F19D26A42764C48D00499980 /* NetworkManager.swift in Sources */,
 				F1A4EF2B276372E7001DA125 /* GalleryCachingConstants.swift in Sources */,
-				F19D26AF2764D65700499980 /* CellViewModel.swift in Sources */,
 				F1A4EF2627636E70001DA125 /* UserDataModel.swift in Sources */,
 				F19D26A82764C7F800499980 /* HomeViewModel.swift in Sources */,
 				F1A4EF02276337A3001DA125 /* Gallery.xcdatamodeld in Sources */,
@@ -434,12 +444,14 @@
 				F1A4EF2827637252001DA125 /* GalleryUser.swift in Sources */,
 				F1A4EF2227636B4D001DA125 /* RegisterViewController.swift in Sources */,
 				F19D26AC2764D5F200499980 /* HomeCollectionViewCell.swift in Sources */,
+				F19D26B92765DB1100499980 /* Constant.swift in Sources */,
 				F1A4EEF8276337A3001DA125 /* AppDelegate.swift in Sources */,
 				F1A4EF3127639EAC001DA125 /* UiViewExtension.swift in Sources */,
 				F1A4EEFA276337A3001DA125 /* SceneDelegate.swift in Sources */,
 				F19D26B727652BF700499980 /* PhotoDetailsViewController.swift in Sources */,
 				F19D26942763B39D00499980 /* LoginViewController.swift in Sources */,
 				F1A4EF2427636D81001DA125 /* GalleryRegisterViewModel.swift in Sources */,
+				F19D26BC2765FD9900499980 /* DataRepo.swift in Sources */,
 				F19D26992763B8CD00499980 /* GalleryLoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

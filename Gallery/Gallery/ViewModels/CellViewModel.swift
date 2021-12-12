@@ -15,8 +15,6 @@ protocol HomeCellViewModelDelegate: class {
 
 final class CellViewModel {
     private weak var delegate: HomeCellViewModelDelegate?
-
-    private let networkManager = NetworkManager()
         
     func downloadImage(url: String) {
         networkManager.downloadImage(url: url) { (result) in
