@@ -1,4 +1,4 @@
-# readme
+# README
 Gallery is a simple photos library with login/Register feature that allows user to get into home screen and show photo details. 
 
 The Architecture used is MVVM with RX Swift, although it’s a simple project and I could simply use MVC, I preferred to choose MVVM as it’s better and easier in testing and decoupling the view and view model. 
