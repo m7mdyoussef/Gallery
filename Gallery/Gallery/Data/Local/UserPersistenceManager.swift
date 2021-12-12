@@ -21,18 +21,14 @@ class UserPersistenceManager{
         
         do{
             try context.save()
-            print("stored Successfully")
         } catch {
-            print("stored failed")
             completion(false)
         }
         completion(true)
     }
     
-    //TODO:: refactor
     func getUserData(userName: String, completion: @escaping ([UserDataModel]?) -> Void){
         var usersData = [UserDataModel]()
-        
         do {
             let fetchReq = NSFetchRequest<NSManagedObject>(entityName: GalleryCachingConstants.userData)
             let users = try context.fetch(fetchReq)

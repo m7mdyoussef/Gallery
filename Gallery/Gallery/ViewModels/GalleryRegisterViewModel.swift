@@ -1,7 +1,5 @@
 
 import Foundation
-
-import Foundation
 import RxSwift
 import TKFormTextField
 
@@ -21,59 +19,53 @@ class GalleryRegisterViewModel:GalleryRegisterViewModelProtocol{
     var errorObservable: Observable<(String)>
     var loadingObservable: Observable<Bool>
     var doneObservable: Observable<Bool>
-
+    
     init() {
         errorObservable = errorSubject.asObservable()
         loadingObservable = loadingsubject.asObservable()
         doneObservable = doneSubject.asObservable()
-        
     }
+    
     private func saveUserData(data:UserDataModel){
         loadingsubject.onNext(true)
         UserPersistenceManager.shared.saveUserData(user: data) {[weak self] saveStatus in
             if saveStatus {
                 // nav to lgin by userNmae
-                print("joeR, saved \(data)")
                 self?.loadingsubject.onNext(false)
                 self?.doneSubject.onCompleted()
-
+                
             }else{
-               // show error
-                print("joeR, Error while saving data")
+                // show error
                 self?.loadingsubject.onNext(false)
-                self?.errorSubject.onNext("Error while saving data")
-
+                self?.errorSubject.onNext(Constant.saveUserDataError)
             }
         }
     }
-
+    
     func checkRegisterationDataValidation(userName: String, password:String , confirmPass:String){
         if(userName.isEmpty || password.isEmpty || confirmPass.isEmpty){
             return
         }
         if !GalleryValidationUtil.isValid(userName: userName) {
-            errorSubject.onNext("invalid userName")
+            errorSubject.onNext(Constant.invalidUserName)
             return
         }
         if !GalleryValidationUtil.isValid(password: password) {
-            errorSubject.onNext("Password should be more than 8 charcters")
+            errorSubject.onNext(Constant.inavlidPassword)
             return
         }else if(password != confirmPass){
-            errorSubject.onNext("Confirmed Password doesn't match the password you entered!!")
+            errorSubject.onNext(Constant.wrongConfirmPass)
             return
         }
         checkUserExistance(userName: userName, password: password)
     }
     
-
     private func checkUserExistance(userName: String, password: String){
         UserPersistenceManager.shared.getUserData(userName: userName) {[weak self] usersData in
             if let usersData = usersData {
-                print("joeR data:\(usersData)")
                 for userData in usersData{
                     if userData.mobileNumber == userName {
-                        print("joeR data true")
-                        self?.errorSubject.onNext("This User already exist, please Login !!")
+                        self?.errorSubject.onNext(Constant.userExist)
                         return
                     }
                 }
@@ -81,5 +73,5 @@ class GalleryRegisterViewModel:GalleryRegisterViewModelProtocol{
             self?.saveUserData(data: UserDataModel(mobileNumber: userName, password: password))
         }
     }
-
+    
 }

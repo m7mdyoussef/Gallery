@@ -11,7 +11,7 @@ class PhotoPersistenceManager{
     private init(){
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
-    //TODO:: refactor
+    
     func savePhotoData(photos:[PhotoModel], completion: @escaping (Result<Bool,NSError>) -> Void){
         let entity = NSEntityDescription.entity(forEntityName: GalleryCachingConstants.photoData, in: context)
         for photo in photos {
@@ -26,9 +26,7 @@ class PhotoPersistenceManager{
         do{
             try context.save()
             completion(.success(true))
-            print("stored Successfully")
         } catch let error as NSError{
-            print("stored failed")
             completion(.failure(error))
             return
         }
@@ -62,7 +60,6 @@ class PhotoPersistenceManager{
     }
     
     func deleteAllPhotos() {
-        print("joe, DB deleted")
         let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: GalleryCachingConstants.photoData)
         fetchReq.returnsObjectsAsFaults = false
         do {

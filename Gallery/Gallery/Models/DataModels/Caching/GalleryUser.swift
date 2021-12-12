@@ -22,20 +22,7 @@ class GalleryUser{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: GalleryCachingConstants.userNameChanged), object: nil)
         }
     }
-    
-    var password: String{
-        get{
-            if let password: String = userDefaults.value(forKey: GalleryCachingConstants.password) as? String {
-                return password
-            }
-            return ""
-        }
-        set{
-            userDefaults.set(newValue, forKey: GalleryCachingConstants.password)
-            userDefaults.synchronize()
-        }
-    }
-    
+        
     var isLoggedIn:Bool {
         get{
             if let isLoggedIn: Bool = userDefaults.value(forKey: GalleryCachingConstants.isLoggedIn) as? Bool {

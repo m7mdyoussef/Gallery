@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HGy-nc-xnK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t78-GG-tM9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -15,8 +15,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚡️Gallery" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XF-dd-S9v" userLabel="titleLabel">
+                                <rect key="frame" x="91.5" y="445" width="231.5" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="YEZ-Cn-zpI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="50"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7XF-dd-S9v" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="J5y-bE-8VO"/>
+                            <constraint firstItem="7XF-dd-S9v" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lZ3-Ix-wXH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nZr-Ad-CqQ"/>
                 </viewController>
@@ -33,10 +48,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hdh-SR-aJb">
-                                <rect key="frame" x="41.5" y="157" width="331" height="582"/>
+                                <rect key="frame" x="41.5" y="269" width="331" height="358"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etD-QO-EGr" customClass="TKFormTextField" customModule="TKFormTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="331" height="104.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="59.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="tel"/>
                                         <connections>
@@ -45,7 +60,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-ot-9B1" customClass="TKFormTextField" customModule="TKFormTextField">
-                                        <rect key="frame" x="0.0" y="119.5" width="331" height="104.5"/>
+                                        <rect key="frame" x="0.0" y="74.5" width="331" height="59.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -53,7 +68,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAQ-AZ-Z0X" userLabel="Confirm Pass" customClass="TKFormTextField" customModule="TKFormTextField">
-                                        <rect key="frame" x="0.0" y="239" width="331" height="104"/>
+                                        <rect key="frame" x="0.0" y="149" width="331" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -61,12 +76,14 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbj-Gs-dJL">
-                                        <rect key="frame" x="0.0" y="358" width="331" height="104.5"/>
+                                        <rect key="frame" x="0.0" y="224" width="331" height="59.5"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKW-Cy-aYa">
-                                        <rect key="frame" x="0.0" y="477.5" width="331" height="104.5"/>
+                                        <rect key="frame" x="0.0" y="298.5" width="331" height="59.5"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="SAVE"/>
                                         <connections>
                                             <action selector="saveRegisterationInfo:" destination="iQ3-dj-dQy" eventType="touchUpInside" id="h16-sd-Hyp"/>
@@ -81,7 +98,7 @@
                             <constraint firstItem="hdh-SR-aJb" firstAttribute="width" secondItem="TVr-Tn-Pzw" secondAttribute="width" multiplier="0.8" id="1Gs-ij-9Ov"/>
                             <constraint firstItem="hdh-SR-aJb" firstAttribute="centerY" secondItem="TVr-Tn-Pzw" secondAttribute="centerY" id="aSd-su-aFf"/>
                             <constraint firstItem="hdh-SR-aJb" firstAttribute="centerX" secondItem="TVr-Tn-Pzw" secondAttribute="centerX" id="wUw-nK-3kx"/>
-                            <constraint firstItem="hdh-SR-aJb" firstAttribute="height" secondItem="TVr-Tn-Pzw" secondAttribute="height" multiplier="0.65" id="yJC-dW-A3w"/>
+                            <constraint firstItem="hdh-SR-aJb" firstAttribute="height" secondItem="TVr-Tn-Pzw" secondAttribute="height" multiplier="0.4" id="yJC-dW-A3w"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gVV-cy-ELp"/>
@@ -141,10 +158,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SpP-hQ-qUE">
-                                <rect key="frame" x="41.5" y="179" width="331" height="538"/>
+                                <rect key="frame" x="41.5" y="291" width="331" height="314"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d1I-nf-aOl" customClass="TKFormTextField" customModule="TKFormTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="331" height="95.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -152,7 +169,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ei-kd-t3n" customClass="TKFormTextField" customModule="TKFormTextField">
-                                        <rect key="frame" x="0.0" y="110.5" width="331" height="95.5"/>
+                                        <rect key="frame" x="0.0" y="66" width="331" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -160,12 +177,13 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbS-U9-HDy">
-                                        <rect key="frame" x="0.0" y="221" width="331" height="96"/>
+                                        <rect key="frame" x="0.0" y="131.5" width="331" height="51"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUK-Qx-ALa">
-                                        <rect key="frame" x="0.0" y="332" width="331" height="95.5"/>
+                                        <rect key="frame" x="0.0" y="197.5" width="331" height="50.5"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="LOGIN">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,8 +193,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wda-Qy-hxO">
-                                        <rect key="frame" x="0.0" y="442.5" width="331" height="95.5"/>
+                                        <rect key="frame" x="0.0" y="263" width="331" height="51"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="REGISTER">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -194,7 +213,7 @@
                             <constraint firstItem="SpP-hQ-qUE" firstAttribute="centerX" secondItem="VIE-4X-71Q" secondAttribute="centerX" id="4Gd-KR-eNO"/>
                             <constraint firstItem="SpP-hQ-qUE" firstAttribute="centerY" secondItem="VIE-4X-71Q" secondAttribute="centerY" id="A5e-vd-vcz"/>
                             <constraint firstItem="SpP-hQ-qUE" firstAttribute="width" secondItem="VIE-4X-71Q" secondAttribute="width" multiplier="0.8" id="cTn-7q-LTC"/>
-                            <constraint firstItem="SpP-hQ-qUE" firstAttribute="height" secondItem="VIE-4X-71Q" secondAttribute="height" multiplier="0.6" id="cbs-lA-n3e"/>
+                            <constraint firstItem="SpP-hQ-qUE" firstAttribute="height" secondItem="VIE-4X-71Q" secondAttribute="height" multiplier="0.35" id="cbs-lA-n3e"/>
                         </constraints>
                     </view>
                     <connections>
@@ -380,8 +399,8 @@
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

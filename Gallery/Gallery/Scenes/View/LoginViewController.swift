@@ -1,9 +1,3 @@
-//
-//  LoginViewController.swift
-//  Gallery
-//
-//  Created by TWI on 10/12/2021.
-//
 
 import UIKit
 import TKFormTextField
@@ -25,7 +19,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc func handleUserNameChanged() {
-        print("joe useDef: \(GalleryUser.sharedUser.userName)")
         userNameTxtField.text = GalleryUser.sharedUser.userName
     }
     
@@ -33,7 +26,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         hideKeyboardWhenTappedAround()
-        self.title = "Login"
+        self.title = Constant.Login
         initializeUI()
         loginViewModel = GalleryLoginViewModel()
         disposeBag = DisposeBag()
@@ -64,17 +57,14 @@ class LoginViewController: UIViewController {
     }
     
     private func initializeUI() {
-        // userNameTxtField.text = GalleryUser.sharedUser.userName
-       // if GalleryUser.sharedUser.isLoggedIn == false{
-            userNameTxtField.text = ""
-            passwordTxtField.text = ""
-       // }
+        userNameTxtField.text = ""
+        passwordTxtField.text = ""
     }
     
     func showHome() {
         GalleryUser.sharedUser.isLoggedIn = true
         initializeUI()
-        let VC = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+        let VC = self.storyboard?.instantiateViewController(identifier: Constant.HomeViewController) as! HomeViewController
         self.navigationController?.pushViewController(VC, animated: true)
     }
     func showLoading() {
@@ -89,26 +79,26 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginTap(_ sender: UIButton) {
         if userNameTxtField.text == ""{
-            userNameTxtField.error = "Required input"
+            userNameTxtField.error = Constant.RequiredInput
         }
         if passwordTxtField.text == ""{
-            passwordTxtField.error = "Required input"
+            passwordTxtField.error = Constant.RequiredInput
         }
         loginViewModel.checkLoginDataValidation(userName: userNameTxtField.text!, password: passwordTxtField.text!)
     }
     
     @IBAction func register(_ sender: Any) {
         initializeUI()
-        let VC = self.storyboard?.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
+        let VC = self.storyboard?.instantiateViewController(identifier: Constant.RegisterViewController) as! RegisterViewController
         self.navigationController?.pushViewController(VC, animated: true)
     }
-
+    
     @IBAction func userNameEndEditing(_ sender: Any) {
         
         if(userNameTxtField.text == ""){
-            userNameTxtField.error = "Required input"
+            userNameTxtField.error = Constant.RequiredInput
         }else if(!GalleryValidationUtil.isValid(userName: userNameTxtField.text!)){
-            userNameTxtField.error = "inavlid user name"
+            userNameTxtField.error = Constant.invalidUserName
         }else{
             userNameTxtField.error = nil
         }
@@ -116,9 +106,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func passwordEndEditing(_ sender: Any) {
         if(passwordTxtField.text == ""){
-            passwordTxtField.error = "Required input"
+            passwordTxtField.error = Constant.RequiredInput
         }else if(!GalleryValidationUtil.isValid(password: passwordTxtField.text!)){
-            passwordTxtField.error = "password must be more than 8 characters"
+            passwordTxtField.error = Constant.inavlidPassword
         }else{
             passwordTxtField.error = nil
         }

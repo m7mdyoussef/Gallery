@@ -15,26 +15,7 @@ class GalleryValidationUtil: NSObject {
         }
     }
     
-
-    
     static func isValid(password: String) -> Bool {
         return password.count >= 8
     }
-    
-//    static func isValid(mobileNumber: String) -> Bool {
-//        let phoneUtil = NBPhoneNumberUtil()
-//        do {
-//            var phoneNumber: NBPhoneNumber?
-//            #if DEBUG
-//            phoneNumber = try phoneUtil.parse(mobileNumber, defaultRegion: "EG")
-//            #else
-//            phoneNumber = try phoneUtil.parse(mobileNumber, defaultRegion: "US")
-//            #endif
-//            let isValid = phoneUtil.isValidNumber(phoneNumber)
-//            return isValid
-//        } catch let error as NSError {
-//            TWILogger.shared().logInfo(-1, message:error.localizedDescription)
-//        }
-//        return false
-//    }
 }

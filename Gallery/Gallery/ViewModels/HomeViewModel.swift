@@ -2,7 +2,20 @@ import Foundation
 import RxSwift
 import RxRelay
 
-final class HomeViewModel {
+protocol BaseHomeViewModelProtocol{
+    var showErrorObservable:Observable<(String)>{get}
+    var loadingObservable: Observable<Bool> {get}
+}
+
+protocol HomeViewModelProtocol: BaseHomeViewModelProtocol{
+    var items: BehaviorRelay<[PhotoModel]> {get}
+    var fetchMoreDatas: PublishSubject<Void> {get}
+    var refreshControlCompelted : PublishSubject<Void> {get}
+    var isLoadingSpinnerAvaliable : PublishSubject<Bool> {get}
+    var refreshControlAction : PublishSubject<Void> {get}
+}
+
+class HomeViewModel: HomeViewModelProtocol{
     
     private var disposeBag:DisposeBag
     var items: BehaviorRelay<[PhotoModel]>
@@ -16,7 +29,7 @@ final class HomeViewModel {
     private var showErrorSubject = PublishSubject<String>()
     
     private var repo: DataRepo
-
+    
     init() {
         repo = DataRepo()
         showErrorObservable = showErrorSubject.asObservable()
@@ -27,7 +40,7 @@ final class HomeViewModel {
         refreshControlCompelted = PublishSubject<Void>()
         isLoadingSpinnerAvaliable = PublishSubject<Bool>()
         disposeBag = DisposeBag()
-
+        
         bind()
     }
     
@@ -69,5 +82,5 @@ final class HomeViewModel {
             self.refreshControlCompelted.onNext(())
         }).disposed(by: disposeBag)
     }
-
+    
 }

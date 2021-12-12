@@ -1,5 +1,4 @@
 
-
 import RxCocoa
 import RxSwift
 import UIKit
@@ -43,7 +42,7 @@ final class HomeViewController: UIViewController {
     
     func rgisterCell(){
         let photoNibCell = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
-        collectionView.register(photoNibCell, forCellWithReuseIdentifier: "HomeCollectionViewCell")
+        collectionView.register(photoNibCell, forCellWithReuseIdentifier: Constant.HomeCollectionViewCell)
     }
     
     private func layout() {
@@ -51,7 +50,7 @@ final class HomeViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshControlTriggered), for: .valueChanged)
         self.navigationItem.hidesBackButton = true
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style:.plain, target: self, action: #selector(handleLogOut))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constant.Logout , style:.plain, target: self, action: #selector(handleLogOut))
     }
     @objc private func refreshControlTriggered() {
         viewModel.refreshControlAction.onNext(())
@@ -91,7 +90,7 @@ final class HomeViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         viewModel.items.bind(to: collectionView.rx.items) { collectionView, row, item in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: IndexPath(index: row)) as! HomeCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.HomeCollectionViewCell, for: IndexPath(index: row)) as! HomeCollectionViewCell
             cell.photoItem = item
             return cell
         }.disposed(by: disposeBag)
@@ -100,7 +99,7 @@ final class HomeViewController: UIViewController {
             if value.element?.url == "" {
                 return
             }else{
-                let PhotoDetailsViewController = self.storyboard?.instantiateViewController(identifier: "PhotoDetailsViewController") as! PhotoDetailsViewController
+                let PhotoDetailsViewController = self.storyboard?.instantiateViewController(identifier: Constant.PhotoDetailsViewController) as! PhotoDetailsViewController
                 PhotoDetailsViewController.modalPresentationStyle = .fullScreen
                 PhotoDetailsViewController.photoModel = value.element
                 self.present(PhotoDetailsViewController, animated: true, completion: nil)
@@ -120,13 +119,13 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func handleLogOut() {
-        let alertController = UIAlertController(title: nil, message: "Are you sure that you want to logout?", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
+        let alertController = UIAlertController(title: nil, message: Constant.logOutMsg, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: Constant.Logout, style: .destructive, handler: { (_) in
             
-            let vc = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+            let vc = self.storyboard?.instantiateViewController(identifier: Constant.LoginViewController) as! LoginViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: Constant.cancel, style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
     

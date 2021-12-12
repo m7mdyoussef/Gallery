@@ -1,9 +1,3 @@
-//
-//  GalleryLoginViewModel.swift
-//  Gallery
-//
-//  Created by TWI on 10/12/2021.
-//
 
 import Foundation
 import RxSwift
@@ -13,7 +7,6 @@ protocol GalleryLoginViewModelProtocol{
     var loadingObservable: Observable<Bool> {get}
     var signedInObservable: Observable<Bool> {get}
     func checkLoginDataValidation(userName: String, password: String)
-    func fetchUserData(userName: String, password: String)
 }
 
 class GalleryLoginViewModel: GalleryLoginViewModelProtocol{
@@ -36,33 +29,30 @@ class GalleryLoginViewModel: GalleryLoginViewModelProtocol{
             return
         }
         if !GalleryValidationUtil.isValid(userName: userName) {
-            errorSubject.onNext("invalid userName")
+            errorSubject.onNext(Constant.invalidUserName)
             return
         }
         if !GalleryValidationUtil.isValid(password: password) {
-            errorSubject.onNext("Password should be more than 8 charcters")
+            errorSubject.onNext(Constant.inavlidPassword)
             return
         }
         fetchUserData(userName: userName, password: password)
     }
     
-    func fetchUserData(userName: String, password: String) {
+    private func fetchUserData(userName: String, password: String) {
         loadingSubject.onNext(true)
         UserPersistenceManager.shared.getUserData(userName: userName) {[weak self] usersData in
             if let usersData = usersData {
-                print("joe data:\(usersData)")
                 for userData in usersData{
                     if userData.mobileNumber == userName && userData.password == password{
-                        print("joe data true")
                         self?.loadingSubject.onNext(false)
                         self?.signedInSubject.onNext(true)
                         return
                     }
                 }
             }
-            print("joe data false")
             self?.loadingSubject.onNext(false)
-            self?.errorSubject.onNext(("Please Register First"))
+            self?.errorSubject.onNext((Constant.registerFirst))
             self?.signedInSubject.onNext(false)
             
         }

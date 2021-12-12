@@ -3,7 +3,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-class DataRepo{
+class DataRepo: HomeViewModelProtocol{
     private var disposeBag:DisposeBag
     private var networkManager: NetworkManager
     private var localPhotosDB: PhotoPersistenceManager
@@ -48,7 +48,6 @@ class DataRepo{
     }
     
     private func fetchData(page: Int, isRefreshControl: Bool) {
-        print("joe, error FD")
 
         self.loadingsubject.onNext(true)
         if isPaginationRequestStillResume || isRefreshRequstStillResume { return }
@@ -61,15 +60,10 @@ class DataRepo{
             isLoadingSpinnerAvaliable.onNext(false)
         }
         networkManager.fetchData(page: page, limit: dataLimitation) { [weak self] (response) in
-            guard let self = self else{
-                print("joe, error 7")
-                return}
-            print("joe, res: \(response)")
-
+            guard let self = self else{return}
             switch response {
             case .failure(let error):
                 // fetch from local
-                print("joe, response error")
                 if let photos = self.localPhotosDB.getPhotos(){
                     self.items.accept(photos)
                     self.dataSubject.onNext(photos)
@@ -80,8 +74,6 @@ class DataRepo{
                 }
             case .success(let response):
                 // fetch from remote
-                print("joe, response = \(String(describing: response))")
-
                 self.loadingsubject.onNext(false)
                 self.handleData(data: response)
             }
@@ -93,7 +85,6 @@ class DataRepo{
     }
     
     private func handleData(data: [PhotoModel]?) {
-        print("joe, handel data")
         localPhotosDB.deleteAllPhotos()
         var newDataArr = data
         newDataArr?.append(PhotoModel(id: "", author: "", width: 0, height: 0, download_url: "noImage", url: ""))

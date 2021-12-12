@@ -11,7 +11,7 @@ class NetworkManager {
         
     func fetchData(page: Int, limit: Int, completion: @escaping (Result<[PhotoModel]?, DataResponseError>) -> Void) {
         
-        let queryItems = [URLQueryItem(name: "page", value: String(page)), URLQueryItem(name: "limit", value: String(limit))]
+        let queryItems = [URLQueryItem(name: Constant.page, value: String(page)), URLQueryItem(name: Constant.limit, value: String(limit))]
         var urlComps = URLComponents(string: Constant.baseURL)
         urlComps?.queryItems = queryItems
         if let url = urlComps?.url{
@@ -36,5 +36,3 @@ class NetworkManager {
         networkService.cancelAllRequests()
     }
 }
-
-//https://picsum.photos/v2/list?page=99&limit=10

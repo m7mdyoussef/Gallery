@@ -1,9 +1,3 @@
-//
-//  RegisterViewController.swift
-//  Gallery
-//
-//  Created by TWI on 10/12/2021.
-//
 
 import UIKit
 import TKFormTextField
@@ -11,7 +5,7 @@ import RxCocoa
 import RxSwift
 
 class RegisterViewController: UIViewController {
-
+    
     @IBOutlet private weak var phoneNumberTxtField: TKFormTextField!
     @IBOutlet private weak var passwordTxtField: TKFormTextField!
     @IBOutlet private weak var confirmPassTxtField: TKFormTextField!
@@ -19,13 +13,13 @@ class RegisterViewController: UIViewController {
     private var registerationViewModel:GalleryRegisterViewModel!
     private var disposeBag:DisposeBag!
     private var activityInd:UIActivityIndicatorView!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Regestration"
+        self.title = Constant.Regestration
         hideKeyboardWhenTappedAround()
-
+        
         disposeBag = DisposeBag()
         activityInd = UIActivityIndicatorView(style: .large)
         
@@ -33,7 +27,7 @@ class RegisterViewController: UIViewController {
         
         registerationViewModel.errorObservable.subscribe(onNext: { msg in
             self.showAlert(message: msg)
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         registerationViewModel.loadingObservable.subscribe(onNext: {[weak self] (state) in
             switch state{
@@ -42,25 +36,25 @@ class RegisterViewController: UIViewController {
             case false:
                 self?.hideLoading()
             }
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         registerationViewModel.doneObservable.subscribe(onCompleted: {
             GalleryUser.sharedUser.userName = self.phoneNumberTxtField.text!
             self.navigationController?.popViewController(animated: true)
-            }).disposed(by: disposeBag)
-
+        }).disposed(by: disposeBag)
+        
     }
     
-
+    
     @IBAction func saveRegisterationInfo(_ sender: Any) {
         if(phoneNumberTxtField.text == ""){
-            phoneNumberTxtField.error = "Required input"
+            phoneNumberTxtField.error = Constant.RequiredInput
         }
-       if(passwordTxtField.text == ""){
-           passwordTxtField.error = "Required input"
+        if(passwordTxtField.text == ""){
+            passwordTxtField.error = Constant.RequiredInput
         }
         if(confirmPassTxtField.text == ""){
-            confirmPassTxtField.error = "Required input"
+            confirmPassTxtField.error = Constant.RequiredInput
         }
         registerationViewModel.checkRegisterationDataValidation(userName: phoneNumberTxtField.text!, password: passwordTxtField.text!, confirmPass: confirmPassTxtField.text!)
     }
@@ -79,10 +73,10 @@ class RegisterViewController: UIViewController {
     
     @IBAction func userNameEndEditing(_ sender: Any) {
         if(phoneNumberTxtField.text == ""){
-            phoneNumberTxtField.error = "Required input"
+            phoneNumberTxtField.error = Constant.RequiredInput
         }
         else if(!GalleryValidationUtil.isValid(userName: phoneNumberTxtField.text!)){
-            phoneNumberTxtField.error = "inavlid user name"
+            phoneNumberTxtField.error = Constant.invalidUserName
         }
         else{
             phoneNumberTxtField.error = nil
@@ -91,30 +85,21 @@ class RegisterViewController: UIViewController {
     
     @IBAction func passwordEndEditing(_ sender: Any) {
         if(passwordTxtField.text == ""){
-            passwordTxtField.error = "Required input"
+            passwordTxtField.error = Constant.RequiredInput
         }else if(!GalleryValidationUtil.isValid(password: passwordTxtField.text!)){
-            passwordTxtField.error = "password must be more than 8 characters"
+            passwordTxtField.error = Constant.inavlidPassword
         }else{
             passwordTxtField.error = nil
         }
     }
     @IBAction func confirmPassEndEditing(_ sender: Any) {
         if(confirmPassTxtField.text == ""){
-            confirmPassTxtField.error = "Required input"
+            confirmPassTxtField.error = Constant.RequiredInput
         }else if(passwordTxtField.text! != confirmPassTxtField.text!){
-            confirmPassTxtField.error = "Confirm Password doesn't match the password."
+            confirmPassTxtField.error = Constant.wrongConfirmPass
         }else{
             confirmPassTxtField.error = nil
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

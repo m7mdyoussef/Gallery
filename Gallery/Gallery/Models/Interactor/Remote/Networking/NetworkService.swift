@@ -10,11 +10,11 @@ enum DataResponseError: Error {
     var reason: String {
         switch self {
         case .network:
-            return "An error occurred while fetching data "
+            return Constant.networkingError
         case .decoding:
-            return "An error occurred while decoding data"
+            return Constant.decodingError
         case .wrongURL:
-            return "An error occurred beacuse wrong URL"
+            return Constant.wrongURLError
         }
     }
 }
