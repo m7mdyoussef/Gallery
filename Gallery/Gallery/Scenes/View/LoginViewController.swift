@@ -13,8 +13,15 @@ class LoginViewController: UIViewController {
     private var disposeBag:DisposeBag!
     private var loginViewModel:GalleryLoginViewModel!
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait)
         NotificationCenter.default.addObserver(self, selector: #selector(handleUserNameChanged), name: NSNotification.Name(rawValue: GalleryCachingConstants.userNameChanged), object: nil)
     }
     

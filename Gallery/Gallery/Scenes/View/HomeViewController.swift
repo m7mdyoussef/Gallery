@@ -8,7 +8,7 @@ final class HomeViewController: UIViewController {
     private var viewModel: HomeViewModel!
     private var disposeBag: DisposeBag!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     private var activityInd:UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     private lazy var viewSpinner: UIView = {
@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
         layout()
     }
     
-    func rgisterCell(){
+    private func rgisterCell(){
         let photoNibCell = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
         collectionView.register(photoNibCell, forCellWithReuseIdentifier: Constant.HomeCollectionViewCell)
     }
@@ -146,12 +146,8 @@ final class HomeViewController: UIViewController {
 extension HomeViewController:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = ((collectionView.frame.width - 2) / 2)
+        let width = ((collectionView.frame.width - 10) / 2)
         return CGSize(width: width, height: width)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

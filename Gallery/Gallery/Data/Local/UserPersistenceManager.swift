@@ -5,7 +5,7 @@ import CoreData
 
 class UserPersistenceManager{
     
-    var context:NSManagedObjectContext!
+    private var context:NSManagedObjectContext!
     static let shared = UserPersistenceManager()
     
     private init(){

@@ -9,7 +9,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .red
     }
     var photoItem:PhotoModel!{
         didSet{

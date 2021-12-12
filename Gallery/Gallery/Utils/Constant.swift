@@ -11,6 +11,7 @@ struct Constant{
     static let wrongURLError = "An error occurred beacuse wrong URL"
     static let networkError = "An error occurred while fetching data"
     static let noImage = "no-image"
+    static let splash = "splash"
     static let HomeViewController = "HomeViewController"
     static let LoginViewController = "LoginViewController"
     static let RegisterViewController = "RegisterViewController"

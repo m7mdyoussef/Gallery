@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E0DCE6B2A8CE543BA58FA67B /* Pods_Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396EF47260715FA882E27D94 /* Pods_Gallery.framework */; };
+		F143F05727663F4000A62AF2 /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143F05627663F4000A62AF2 /* UIColorEx.swift */; };
+		F143F0592766500300A62AF2 /* AppUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F143F0582766500300A62AF2 /* AppUtil.swift */; };
 		F19D26942763B39D00499980 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26932763B39D00499980 /* LoginViewController.swift */; };
 		F19D26992763B8CD00499980 /* GalleryLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D26982763B8CD00499980 /* GalleryLoginViewModel.swift */; };
 		F19D269B2763C5E700499980 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19D269A2763C5E700499980 /* HomeViewController.swift */; };
@@ -43,6 +45,8 @@
 		396EF47260715FA882E27D94 /* Pods_Gallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEA562AA17ED058F02D5CDA /* Pods-Gallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.debug.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.debug.xcconfig"; sourceTree = "<group>"; };
 		63D88C9C1EA9A8B3A7D3F358 /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
+		F143F05627663F4000A62AF2 /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
+		F143F0582766500300A62AF2 /* AppUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtil.swift; sourceTree = "<group>"; };
 		F19D26932763B39D00499980 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F19D26982763B8CD00499980 /* GalleryLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryLoginViewModel.swift; sourceTree = "<group>"; };
 		F19D269A2763C5E700499980 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				F1A4EF3027639EAC001DA125 /* UiViewExtension.swift */,
 				F19D269E2764ABC500499980 /* UIImageViewEx.swift */,
 				F19D26B82765DB1100499980 /* Constant.swift */,
+				F143F05627663F4000A62AF2 /* UIColorEx.swift */,
+				F143F0582766500300A62AF2 /* AppUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 				F1A4EF2F276386E2001DA125 /* UserPersistenceManager.swift in Sources */,
 				F19D26A12764C1A100499980 /* NetworkService.swift in Sources */,
 				F19D269B2763C5E700499980 /* HomeViewController.swift in Sources */,
+				F143F05727663F4000A62AF2 /* UIColorEx.swift in Sources */,
 				F19D26B12765056000499980 /* PhotoPersistenceManager.swift in Sources */,
 				F1A4EF1E27635715001DA125 /* GalleryValidationUtil.swift in Sources */,
 				F19D269F2764ABC600499980 /* UIImageViewEx.swift in Sources */,
@@ -451,6 +458,7 @@
 				F19D26B727652BF700499980 /* PhotoDetailsViewController.swift in Sources */,
 				F19D26942763B39D00499980 /* LoginViewController.swift in Sources */,
 				F1A4EF2427636D81001DA125 /* GalleryRegisterViewModel.swift in Sources */,
+				F143F0592766500300A62AF2 /* AppUtil.swift in Sources */,
 				F19D26BC2765FD9900499980 /* DataRepo.swift in Sources */,
 				F19D26992763B8CD00499980 /* GalleryLoginViewModel.swift in Sources */,
 			);
