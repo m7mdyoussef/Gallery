@@ -22,7 +22,7 @@ class DataRepo: HomeViewModelProtocol{
     var dataObservable:Observable<[PhotoModel]>
     
     private var pageCounter = 1
-    private let dataLimitation = 5
+    private let dataLimitation = 10
     private var isPaginationRequestStillResume = false
     private var isRefreshRequstStillResume = false
     
@@ -55,7 +55,7 @@ class DataRepo: HomeViewModelProtocol{
     }
     
     private func fetchData(page: Int, isRefreshControl: Bool) {
-
+        
         self.loadingsubject.onNext(true)
         if isPaginationRequestStillResume || isRefreshRequstStillResume { return }
         self.isRefreshRequstStillResume = isRefreshControl
@@ -98,7 +98,15 @@ class DataRepo: HomeViewModelProtocol{
     private func handleData(data: [PhotoModel]?) {
         localPhotosDB.deleteAllPhotos()
         var newDataArr = data
-        newDataArr?.append(PhotoModel(id: "", author: "", width: 0, height: 0, download_url: "noImage", url: ""))
+        if let data = data{
+            if data.count > 4{
+                newDataArr?.insert(PhotoModel(id: "", author: "", width: 0, height: 0, download_url: "noImage", url: ""), at: 5)
+            }
+            if data.count > 9{
+                newDataArr?.insert(PhotoModel(id: "", author: "", width: 0, height: 0, download_url: "noImage", url: ""), at: 11)
+            }
+        }
+        
         if pageCounter != 1 {
             let oldDatas = items.value
             newDataArr = oldDatas + (newDataArr ?? [])
@@ -122,7 +130,6 @@ class DataRepo: HomeViewModelProtocol{
     
     private func refreshControlTriggered() {
         networkManager.cancelAllRequests()
-      //  isPaginationRequestStillResume = false
         pageCounter = 1
         items.accept([])
         dataSubject.onNext([])
