@@ -382,6 +382,7 @@
                     <connections>
                         <outlet property="autherLabel" destination="Dp2-Xt-0TP" id="HEA-6u-OXd"/>
                         <outlet property="downLoadUrlLabel" destination="daR-h9-JbP" id="L3e-d7-h2h"/>
+                        <outlet property="exitBtn" destination="ays-Bo-hlj" id="4yF-hr-r8b"/>
                         <outlet property="heightLabel" destination="6Z4-3d-fJf" id="dYd-XW-h8g"/>
                         <outlet property="idLabel" destination="QxM-Gy-vaF" id="YVB-pS-6Ad"/>
                         <outlet property="image" destination="oSa-WS-gMw" id="Xp0-Ug-oAU"/>

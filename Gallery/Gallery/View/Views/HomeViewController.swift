@@ -5,17 +5,15 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    private var viewModel: HomeViewModel!
-    private var disposeBag: DisposeBag!
-    
     @IBOutlet private weak var collectionView: UICollectionView!
     private var activityInd:UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
-    
+    private var viewModel: HomeViewModel!
+    private var disposeBag: DisposeBag!
     private lazy var viewSpinner: UIView = {
         let view = UIView(frame: CGRect(
             x: 0,
             y: 0,
-            width: view.frame.size.width,
+            width: collectionView.frame.size.width,
             height: 100)
         )
         let spinner = UIActivityIndicatorView()

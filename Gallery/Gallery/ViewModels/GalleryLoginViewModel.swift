@@ -44,9 +44,15 @@ class GalleryLoginViewModel: GalleryLoginViewModelProtocol{
         UserPersistenceManager.shared.getUserData(userName: userName) {[weak self] usersData in
             if let usersData = usersData {
                 for userData in usersData{
-                    if userData.mobileNumber == userName && userData.password == password{
-                        self?.loadingSubject.onNext(false)
-                        self?.signedInSubject.onNext(true)
+                    if userData.mobileNumber == userName {
+                        if userData.password == password {
+                            self?.loadingSubject.onNext(false)
+                            self?.signedInSubject.onNext(true)
+                        }else {
+                            self?.loadingSubject.onNext(false)
+                            self?.errorSubject.onNext((Constant.worngPassword))
+                            self?.signedInSubject.onNext(false)
+                        }
                         return
                     }
                 }

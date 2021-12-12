@@ -7,7 +7,7 @@ class NetworkManager {
     
     private init() {}
     
-    private let networkService = NetworkService()
+  //  private let networkService = NetworkService()
         
     func fetchData(page: Int, limit: Int, completion: @escaping (Result<[PhotoModel]?, DataResponseError>) -> Void) {
         
@@ -15,7 +15,7 @@ class NetworkManager {
         var urlComps = URLComponents(string: Constant.baseURL)
         urlComps?.queryItems = queryItems
         if let url = urlComps?.url{
-            networkService.fetchData(url: url) { (result) in
+            NetworkService.sharedInstance.fetchData(url: url) { (result) in
                 switch result {
                 case .failure(let err):
                     completion(.failure(err))
@@ -33,6 +33,6 @@ class NetworkManager {
     }
     
     func cancelAllRequests(){
-        networkService.cancelAllRequests()
+        NetworkService.sharedInstance.cancelAllRequests()
     }
 }
