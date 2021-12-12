@@ -57,9 +57,9 @@ class HomeViewModel: HomeViewModelProtocol{
         }
         .disposed(by: disposeBag)
         
-        repo.dataObservable.subscribe(onNext: {[weak self] (photoArray) in
+        repo.dataObservable.subscribe(onNext: {[weak self] (photos) in
             guard let self = self else {return}
-            self.items.accept(photoArray)
+            self.items.accept(photos)
         }).disposed(by: disposeBag)
         
         repo.showErrorObservable.subscribe(onNext: {[weak self] (message) in
@@ -67,14 +67,14 @@ class HomeViewModel: HomeViewModelProtocol{
             self.showErrorSubject.onNext(message)
         }).disposed(by: disposeBag)
         
-        repo.loadingObservable.subscribe(onNext: {[weak self] (bool) in
+        repo.loadingObservable.subscribe(onNext: {[weak self] (status) in
             guard let self = self else {return}
-            self.loadingsubject.onNext(bool)
+            self.loadingsubject.onNext(status)
         }).disposed(by: disposeBag)
         
-        repo.isLoadingSpinnerAvaliable.subscribe(onNext: {[weak self] (bool) in
+        repo.isLoadingSpinnerAvaliable.subscribe(onNext: {[weak self] (status) in
             guard let self = self else {return}
-            self.isLoadingSpinnerAvaliable.onNext(bool)
+            self.isLoadingSpinnerAvaliable.onNext(status)
         }).disposed(by: disposeBag)
         
         repo.refreshControlCompelted.subscribe(onNext: {[weak self] (_) in

@@ -6,10 +6,9 @@ struct Constant{
     
     static let page = "page"
     static let limit = "limit"
-    static let networkingError = "An error occurred while fetching data"
+    static let networkingError = "An error occurred while fetching data, please check internet connection and try again!"
     static let decodingError = "An error occurred while decoding data"
     static let wrongURLError = "An error occurred beacuse wrong URL"
-    static let networkError = "An error occurred while fetching data"
     static let noImage = "no-image"
     static let splash = "splash"
     static let HomeViewController = "HomeViewController"
@@ -30,6 +29,8 @@ struct Constant{
     static let userExist = "This User already exist, please Login !!"
     static let saveUserDataError = "Error occured, please try again Later!"
     static let registerFirst = "Please Register First"
+    static let worngPassword = "worng password"
+
     
     static let errorTitle = "Gallery Error!!"
     static let ok = "OK"

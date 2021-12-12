@@ -4,6 +4,7 @@ import SDWebImage
 
 class PhotoDetailsViewController: UIViewController {
     
+    @IBOutlet private weak var exitBtn: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var downLoadUrlLabel: UILabel!
     @IBOutlet private weak var urlLabel: UILabel!
@@ -40,6 +41,7 @@ class PhotoDetailsViewController: UIViewController {
                 self.urlLabel.textColor = clr
                 self.downLoadUrlLabel.textColor = clr
                 self.titleLabel.textColor = clr
+                self.exitBtn.tintColor = clr
             }
             
         }
