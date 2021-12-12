@@ -31,31 +31,30 @@ class PhotoPersistenceManager{
             return
         }
     }
-    
-    func getPhotos() -> [PhotoModel]?{
+        
+    func getPhotos(completion: @escaping ([PhotoModel]?) -> Void){
         var photosData = [PhotoModel]()
-        
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: GalleryCachingConstants.photoData)
+
         do {
-            let fetchReq = NSFetchRequest<NSManagedObject>(entityName: GalleryCachingConstants.photoData)
             let photos = try context.fetch(fetchReq)
-            photos.forEach { photo in
-                if let author = photo.value(forKey: GalleryCachingConstants.author),
-                   let id = photo.value(forKey: GalleryCachingConstants.id),
-                   let download_url = photo.value(forKey: GalleryCachingConstants.download_url),
-                   let url = photo.value(forKey: GalleryCachingConstants.url),
-                   let width = photo.value(forKey: GalleryCachingConstants.width),
-                   let height = photo.value(forKey: GalleryCachingConstants.height){
-                    photosData.append(PhotoModel(id: id as! String, author: author as! String, width: width as! Int, height: height as! Int, download_url: download_url as! String, url: url as! String))
-                }
+            for photo in photos{
+                let author = photo.value(forKey: GalleryCachingConstants.author) as! String
+                  let id = photo.value(forKey: GalleryCachingConstants.id) as! String
+                  let download_url = photo.value(forKey: GalleryCachingConstants.download_url) as! String
+                  let url = photo.value(forKey: GalleryCachingConstants.url) as! String
+                  let width = photo.value(forKey: GalleryCachingConstants.width) as! Int
+                  let height = photo.value(forKey: GalleryCachingConstants.height) as! Int
+                   photosData.append(PhotoModel(id: id, author: author, width: width , height: height, download_url: download_url, url: url))
+               }
+            if(photosData.isEmpty){
+                completion(nil)
+            }else{
+                completion(photosData)
             }
+            
         } catch {
-            return nil
-        }
-        
-        if photosData.isEmpty {
-            return nil
-        } else {
-            return photosData
+            completion(nil)
         }
     }
     

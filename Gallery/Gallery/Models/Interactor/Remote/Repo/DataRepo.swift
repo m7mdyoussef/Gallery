@@ -8,12 +8,12 @@ class DataRepo: HomeViewModelProtocol{
     private var networkManager: NetworkManager
     private var localPhotosDB: PhotoPersistenceManager
     
-    var items = BehaviorRelay<[PhotoModel]>(value: [])
+    var items: BehaviorRelay<[PhotoModel]>
     private var dataSubject = PublishSubject<[PhotoModel]>()
-    var fetchMoreDatas = PublishSubject<Void>()
-    var refreshControlAction = PublishSubject<Void>()
-    var refreshControlCompelted = PublishSubject<Void>()
-    var isLoadingSpinnerAvaliable = PublishSubject<Bool>()
+    var fetchMoreDatas: PublishSubject<Void>
+    var refreshControlAction: PublishSubject<Void>
+    var refreshControlCompelted: PublishSubject<Void>
+    var isLoadingSpinnerAvaliable: PublishSubject<Bool>
     private var loadingsubject = PublishSubject<Bool>()
     private var showErrorSubject = PublishSubject<String>()
     
@@ -33,6 +33,13 @@ class DataRepo: HomeViewModelProtocol{
         showErrorObservable = showErrorSubject.asObservable()
         loadingObservable = loadingsubject.asObservable()
         dataObservable = dataSubject.asObservable()
+        items = BehaviorRelay<[PhotoModel]>(value: [])
+        
+        fetchMoreDatas = PublishSubject<Void>()
+        refreshControlAction = PublishSubject<Void>()
+        refreshControlCompelted = PublishSubject<Void>()
+        isLoadingSpinnerAvaliable = PublishSubject<Bool>()
+        
         bind()
     }
     
@@ -59,23 +66,27 @@ class DataRepo: HomeViewModelProtocol{
         if pageCounter == 1  || isRefreshControl {
             isLoadingSpinnerAvaliable.onNext(false)
         }
-        networkManager.fetchData(page: page, limit: dataLimitation) { [weak self] (response) in
+        networkManager.fetchData(page: pageCounter, limit: dataLimitation) { [weak self] (response) in
             guard let self = self else{return}
             switch response {
-            case .failure(let error):
-                // fetch from local
-                if let photos = self.localPhotosDB.getPhotos(){
-                    self.items.accept(photos)
-                    self.dataSubject.onNext(photos)
-                    return
-                }else{
-                    self.loadingsubject.onNext(false)
-                    self.showErrorSubject.onNext(error.localizedDescription)
-                }
             case .success(let response):
                 // fetch from remote
                 self.loadingsubject.onNext(false)
                 self.handleData(data: response)
+                
+            case .failure(let error):
+                // fetch from local
+                self.localPhotosDB.getPhotos { (photos) in
+                    if let photos = photos {
+                        self.items.accept(photos)
+                        self.dataSubject.onNext(photos)
+                        self.showErrorSubject.onNext(error.reason)
+                        return
+                    }else{
+                        self.loadingsubject.onNext(false)
+                        self.showErrorSubject.onNext(error.reason)
+                    }
+                }
             }
             self.isLoadingSpinnerAvaliable.onNext(false)
             self.isPaginationRequestStillResume = false
@@ -102,6 +113,7 @@ class DataRepo: HomeViewModelProtocol{
                     self.dataSubject.onNext(newDataArr ?? [])
                 }
             case .failure(let error):
+                print("joe , error saving DB")
                 self.showErrorSubject.onNext(error.localizedDescription)
             }
         }
@@ -110,9 +122,10 @@ class DataRepo: HomeViewModelProtocol{
     
     private func refreshControlTriggered() {
         networkManager.cancelAllRequests()
-        isPaginationRequestStillResume = false
+      //  isPaginationRequestStillResume = false
         pageCounter = 1
         items.accept([])
+        dataSubject.onNext([])
         fetchData(page: pageCounter,isRefreshControl: true)
     }
 }

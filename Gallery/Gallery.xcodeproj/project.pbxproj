@@ -148,7 +148,7 @@
 			children = (
 				F1A4EF2C2763869B001DA125 /* Data */,
 				F1A4EF1527634004001DA125 /* Models */,
-				F1A4EF1627634014001DA125 /* Scenes */,
+				F1A4EF1627634014001DA125 /* View */,
 				F1A4EF1727634023001DA125 /* ViewModels */,
 				F1A4EF1427633FF1001DA125 /* Utils */,
 				F1A4EF1227633B8A001DA125 /* Resourses */,
@@ -198,13 +198,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F1A4EF1627634014001DA125 /* Scenes */ = {
+		F1A4EF1627634014001DA125 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F1A4EF2027636A74001DA125 /* View */,
+				F1A4EF2027636A74001DA125 /* Views */,
 				F1A4EF1F27636A60001DA125 /* UI */,
 			);
-			path = Scenes;
+			path = View;
 			sourceTree = "<group>";
 		};
 		F1A4EF1727634023001DA125 /* ViewModels */ = {
@@ -270,7 +270,7 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		F1A4EF2027636A74001DA125 /* View */ = {
+		F1A4EF2027636A74001DA125 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F19D26A92764D5F200499980 /* Cell */,
@@ -280,7 +280,7 @@
 				F19D269A2763C5E700499980 /* HomeViewController.swift */,
 				F19D26B627652BF700499980 /* PhotoDetailsViewController.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F1A4EF29276372BD001DA125 /* Caching */ = {

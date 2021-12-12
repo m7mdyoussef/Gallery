@@ -15,11 +15,17 @@ enum DataResponseError: Error {
             return Constant.decodingError
         case .wrongURL:
             return Constant.wrongURLError
+      
         }
     }
 }
 
-struct NetworkService {
+class NetworkService {
+    
+    static let sharedInstance = NetworkService()
+    
+    private init() {}
+    
     func fetchData(url: URL, completion: @escaping (Result<Data, DataResponseError>) -> Void) {
         AF.request(url).responseData { (data) in
             guard let httpResponse = data.response,
