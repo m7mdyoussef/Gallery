@@ -1,0 +1,52 @@
+PODS:
+  - Alamofire (5.4.4)
+  - ObjectMapper (4.2.0)
+  - ReachabilitySwift (5.0.0)
+  - RxCocoa (6.1.0):
+    - RxRelay (= 6.1.0)
+    - RxSwift (= 6.1.0)
+  - RxRelay (6.1.0):
+    - RxSwift (= 6.1.0)
+  - RxSwift (6.1.0)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
+  - TKFormTextField (0.3.1)
+  - TPKeyboardAvoiding (1.3.5)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - ObjectMapper
+  - ReachabilitySwift
+  - RxCocoa (= 6.1.0)
+  - RxSwift (= 6.1.0)
+  - SDWebImage
+  - TKFormTextField
+  - TPKeyboardAvoiding
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - ObjectMapper
+    - ReachabilitySwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SDWebImage
+    - TKFormTextField
+    - TPKeyboardAvoiding
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
+  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  TKFormTextField: def6294d3d3bd944d864ee48d5cc6e36863d6ade
+  TPKeyboardAvoiding: d55b3ea7b362540af8fcf36aa3ed2e87bf210cc6
+
+PODFILE CHECKSUM: 38b7c75398a6cca9b792519e0a95f4df3f04c515
+
+COCOAPODS: 1.11.2
