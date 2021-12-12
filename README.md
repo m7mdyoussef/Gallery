@@ -8,3 +8,4 @@ Design Patterns:
 •	Observer Design Pattern in calculator View Model to update the listeners once the data changes.
 
 Api: https://picsum.photos/v2/list?page=1&limit=10
+ xcode: 13.1
