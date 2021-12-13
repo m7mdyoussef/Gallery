@@ -122,6 +122,7 @@ final class HomeViewController: UIViewController {
             
             let vc = self.storyboard?.instantiateViewController(identifier: Constant.LoginViewController) as! LoginViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            GalleryUser.sharedUser.isLoggedIn = false
         }))
         alertController.addAction(UIAlertAction(title: Constant.cancel, style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
